@@ -130,6 +130,11 @@ public class Model extends Observable {
 				newVelo = Geometry.reflectWall(ls, ball.getVelo(), 1.0);
 			}
 		}*/
+		
+		// need to make collisions for the gizmos
+		
+		
+		
 		return new CollisionDetails(shortestTime, newVelo);
 	}
 
