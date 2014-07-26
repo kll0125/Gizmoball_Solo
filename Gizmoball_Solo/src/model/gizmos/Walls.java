@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import model.physicsMIT.LineSegment;
 
 /**
- * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
+ * @author Nadey Ali 
  */
 
 public class Walls {

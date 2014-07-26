@@ -3,10 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Observable;
 
-import model.gizmos.AbsorberGizmo;
-import model.gizmos.CircleGizmo;
 import model.gizmos.HorizontalLine;
-import model.gizmos.SquareGizmo;
 import model.gizmos.VerticalLine;
 import model.gizmos.Walls;
 import model.physicsMIT.Circle;
@@ -23,9 +20,6 @@ public class Model extends Observable {
 	private ArrayList<VerticalLine> lines;
 	private ArrayList<HorizontalLine> Hlines;
 	private Ball ball;
-	private AbsorberGizmo absorbergizmo;
-	private CircleGizmo circlegizmo;
-	private SquareGizmo squaregizmo;
 	private Walls gws;
 
 	public Model() {
@@ -122,21 +116,7 @@ public class Model extends Observable {
 		return ball;
 	}
 
-	/**********************************/
-	public AbsorberGizmo getAbsorber() {
-		return absorbergizmo;
-	}
 
-	public CircleGizmo getCircle() {
-		return circlegizmo;
-	}
-
-	public SquareGizmo getSquare() {
-
-		return squaregizmo;
-	}
-
-	/**********************************/
 	public ArrayList<HorizontalLine> gethLines() {
 
 		return Hlines;
@@ -146,8 +126,6 @@ public class Model extends Observable {
 
 		Hlines.add(hl);
 	}
-
-	/**********************************/
 
 	public ArrayList<VerticalLine> getLines() {
 		return lines;

@@ -23,7 +23,7 @@ public class Ball {
 	public Ball(double x, double y, double xv, double yv) {
 		xpos = x; // Centre coordinates
 		ypos = y;
-		colour = Color.MAGENTA;
+		colour = Color.WHITE;
 		velocity = new Vect(xv, yv);
 		radius = 10;
 		stopped = false;
@@ -77,6 +77,11 @@ public class Ball {
 
 	public Color getColour() {
 		return colour;
+	}
+
+	public Object newTask(double tempTime) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
