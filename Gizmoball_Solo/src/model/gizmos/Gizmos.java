@@ -12,10 +12,10 @@ public abstract class Gizmos implements IGizmo{
 	  protected int width;
 	  protected int height;
 	  protected Color colour;
-//	  protected boolean Istriggered;
 	  
 	  public Gizmos() { }
 	  
+	  // all gizmos have this: x, y, width, height
 	  public Gizmos(int x, int y, int width, int height) {
 			this.xPos = x;
 			this.yPos = y;

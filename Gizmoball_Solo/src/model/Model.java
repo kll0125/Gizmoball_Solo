@@ -32,31 +32,17 @@ public class Model extends Observable {
 
 		// Ball position (25, 25) in pixels. Ball velocity (100, 100) pixels per
 		// tick
-		ball = new Ball(25, 25, 100, 100);
-		
+		ball = new Ball(25, 25, 10, 10);
+
 		// Wall size 500 x 500 pixels
 		gws = new Walls(0, 0, 500, 500);
 
 		// Lines added in Main
 		lines = new ArrayList<VerticalLine>();
-		
-		/**************************************************************/
-		// absorber gizmo at some random position, no idea where this will end
-		// up
-		absorbergizmo = new AbsorberGizmo(10, 10, 10, 10);
 
-		// again arbritary x,y dont know where this will end up
-		circlegizmo = new CircleGizmo(145, 123);
-
-		// squaregizmo on board
-		squaregizmo = new SquareGizmo(123, 321);
-		
 		// Hline to add in main
 		Hlines = new ArrayList<HorizontalLine>();
-		
-		/**************************************************************/
 
-	
 	}
 
 	public void moveBall() {
@@ -103,8 +89,9 @@ public class Model extends Observable {
 		// Create a physics.Circle from Ball
 		Circle ballCircle = ball.getCircle();
 		Vect ballVelocity = ball.getVelo();
-		Vect newVelo = new Vect(0, 0);
-
+		Vect newVelo = new Vect(1, 1);
+		
+		
 		// Now find shortest time to hit a vertical line or a wall line
 		double shortestTime = Double.MAX_VALUE;
 		double time = 0.0;
@@ -121,20 +108,13 @@ public class Model extends Observable {
 		}
 
 		// Time to collide with any vertical lines
-	/*	for (VerticalLine line : lines) {
-			LineSegment ls = line.getLineSeg();
-			time = Geometry
-					.timeUntilWallCollision(ls, ballCircle, ballVelocity);
-			if (time < shortestTime) {
-				shortestTime = time;
-				newVelo = Geometry.reflectWall(ls, ball.getVelo(), 1.0);
-			}
-		}*/
-		
-		// need to make collisions for the gizmos
-		
-		
-		
+		/*
+		 * for (VerticalLine line : lines) { LineSegment ls = line.getLineSeg();
+		 * time = Geometry .timeUntilWallCollision(ls, ballCircle,
+		 * ballVelocity); if (time < shortestTime) { shortestTime = time;
+		 * newVelo = Geometry.reflectWall(ls, ball.getVelo(), 1.0); } }
+		 */
+
 		return new CollisionDetails(shortestTime, newVelo);
 	}
 
@@ -156,6 +136,7 @@ public class Model extends Observable {
 		return squaregizmo;
 	}
 
+	/**********************************/
 	public ArrayList<HorizontalLine> gethLines() {
 
 		return Hlines;

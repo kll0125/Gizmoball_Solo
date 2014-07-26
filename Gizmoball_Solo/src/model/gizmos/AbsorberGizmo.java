@@ -11,7 +11,8 @@ public class AbsorberGizmo extends Gizmos implements Observer {
 
 	private Ball isCapturedBall;
 	private Color colour;
-	private int wth;
+
+
 
 	public AbsorberGizmo(int x1, int y1, int x2, int y2) {
 		super(x1, y1, x2 - x1, y2 - y1);
@@ -19,6 +20,7 @@ public class AbsorberGizmo extends Gizmos implements Observer {
 		colour = Color.RED;
 	}
 	
+	@Override
 	public GizmoTypes getType (){
 		
 		return GizmoTypes.AbsorberGizmo;
@@ -26,9 +28,12 @@ public class AbsorberGizmo extends Gizmos implements Observer {
 
 	
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable ob, Object arg) {
 		// TODO Auto-generated method stub
-		
+
+			if(isCapturedBall.getExactY() < this.getYpos() - 0.50){
+				isCapturedBall = null;
+			} // end of if 
 	}
 
 	@Override

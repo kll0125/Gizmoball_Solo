@@ -6,6 +6,7 @@ import model.GizmoTypes;
 
 public class SquareGizmo extends BumpersGizmo {
 
+	// size is 1 by 1 
 	public SquareGizmo(int x, int y) {
 		super(x, y, 1, 1);
 		

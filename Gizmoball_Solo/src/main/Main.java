@@ -4,9 +4,13 @@ import javax.swing.UIManager;
 
 import view.RunGui;
 import model.Model;
+import model.gizmos.AbsorberGizmo;
 import model.gizmos.HorizontalLine;
 import model.gizmos.VerticalLine;
 
+/**
+ * @author Nadey Ali
+ */
 public class Main {
 	
 	public static void main(String[] args){
@@ -44,6 +48,8 @@ public class Main {
 				model.addHLine(new HorizontalLine(350, 1, 500));
 				model.addHLine(new HorizontalLine(400, 1, 500));
 				model.addHLine(new HorizontalLine(450, 1, 500));
+				model.addHLine(new HorizontalLine(0, 0, 0));
+				
 
 				RunGui gui = new RunGui(model);
 				gui.createAndShowGUI();
