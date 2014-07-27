@@ -1,7 +1,9 @@
 package model.gizmos;
 
 import java.awt.Color;
+import java.util.List;
 
+import model.physicsMIT.Vect;
 import model.GizmoTypes;
 import model.IGizmo;
 import model.physicsMIT.LineSegment;
@@ -13,24 +15,18 @@ import model.physicsMIT.LineSegment;
 
 public class Gizmos implements IGizmo {
 
-	public Gizmos(){ }
 	protected int xpos;
 	protected int ypos;
 	protected int width;
 	protected int height;
 	public LineSegment ls;
+	protected GizmoTypes type;
 
-	protected Gizmos(int x, int y, int w, int h) {
-		xpos = x;
-		ypos = y;
-		height = h;
-		width = w;
-	}
-
-	@Override
-	public GizmoTypes getType() {
-		// TODO Auto-generated method stub
-		return getType();
+	protected Gizmos(int X, int Y, int W, int H) {
+		xpos = X;
+		ypos = Y;
+		height = H;
+		width = W;
 	}
 
 	@Override
@@ -63,8 +59,15 @@ public class Gizmos implements IGizmo {
 		return colour();
 	}
 	
+	@Override
+	public GizmoTypes getType() {
+		// TODO Auto-generated method stub
+		return type;
+	}
+	
 	public LineSegment getLineSeg() {
 		return ls;
 	}
+	
 
 } // end of class

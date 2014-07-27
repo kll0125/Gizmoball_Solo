@@ -22,9 +22,9 @@ public class Model extends Observable {
 
 	private ArrayList<VerticalLine> lines;
 	private ArrayList<HorizontalLine> Hlines;
+	private ArrayList <Gizmos> giz;
+	private AbsorberGizmo abg;
 	private CircleGizmo cg;
-	// absorber here 
-	// square here
 	private Ball ball;
 	private Walls gws;
 
@@ -34,8 +34,11 @@ public class Model extends Observable {
 		// tick
 		ball = new Ball(19, 19, 10, 10);
 		
-		// adds circle to board
-		cg = new CircleGizmo(90,90);
+		// remove later
+		cg = new CircleGizmo(90, 90);
+		
+		//remove later
+		abg = new AbsorberGizmo(500,100, 100,100);
 
 		// Wall size 500 x 500 pixels
 		gws = new Walls(0, 0, 500, 500);
@@ -94,6 +97,9 @@ public class Model extends Observable {
 		Circle ballCircle = ball.getCircle();
 		Vect ballVelocity = ball.getVelo();
 		Vect newVelo = new Vect(1, 1);
+		
+		//remove later
+		Circle CircleGizmo = cg.getCircle();
 
 		// Now find shortest time to hit a vertical line or a wall line
 		double shortestTime = Double.MAX_VALUE;
@@ -109,6 +115,7 @@ public class Model extends Observable {
 				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
 			}
 		}
+		
 
 		return new CollisionDetails(shortestTime, newVelo);
 	} // end of timeUntilCollision()
@@ -116,12 +123,27 @@ public class Model extends Observable {
 	public Ball getBall() {
 		return ball;
 	}
-//////////////	
+	
+	//remove later
 	public CircleGizmo getCircle(){
 		return cg;
 	}
-/////////////
-
+	
+	//remove later
+	public AbsorberGizmo getAbsorber(){
+		return abg;
+		
+	}
+//////////////////////////////////////	
+	public ArrayList<Gizmos> getGizmos(){
+		return giz;
+	}
+	
+	public void addGizmos (Gizmos gg){
+		giz.add(gg);
+	}
+/////////////////////////////////////////
+	
 	public ArrayList<HorizontalLine> gethLines() {
 
 		return Hlines;

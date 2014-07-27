@@ -7,7 +7,10 @@ import java.awt.Graphics2D;
 
 
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -92,6 +95,9 @@ public class BoardView extends JPanel implements Observer {
 					int y = (int) (c.getExactY() - c.getRadius());
 					g2d.fillOval(x, y, width, width);
 				} // end of draw circle
+				
+				AbsorberGizmo a = gm.getAbsorber();				
+				
 				
 					
 	} // end of paint
