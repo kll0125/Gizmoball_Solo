@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -18,6 +19,9 @@ import model.Ball;
 import model.GizmoTypes;
 import model.IGizmo;
 import model.Model;
+import model.gizmos.AbsorberGizmo;
+import model.gizmos.CircleGizmo;
+import model.gizmos.Gizmos;
 import model.gizmos.HorizontalLine;
 import model.gizmos.VerticalLine;
 
@@ -42,7 +46,7 @@ public class BoardView extends JPanel implements Observer {
 		this.setBorder(BorderFactory.createLineBorder(Color.black));	
 	} // end of board
 
-	// Fix onscreen size
+	// Fix on-screen size
 	public Dimension getPreferredSize() {
 		return new Dimension(width, height);
 	}
@@ -57,7 +61,7 @@ public class BoardView extends JPanel implements Observer {
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		
 		g2d.transform(AffineTransform.getScaleInstance(getXScale(), getYScale()));
-		g2d.setFont(g2d.getFont().deriveFont(AffineTransform.getScaleInstance(2.0 / getXScale(), 2.0 / getYScale())));
+		g2d.setFont(g2d.getFont().deriveFont(AffineTransform.getScaleInstance(1.0 / getXScale(), 2.0 / getYScale())));
 
 		// Draw all the vertical lines
 				for (VerticalLine vl : gm.getLines()) {
@@ -78,6 +82,18 @@ public class BoardView extends JPanel implements Observer {
 					int width = (int) (2 * b.getRadius());
 					g2d.fillOval(x, y, width, width);
 				}// end of draw ball
+				
+				//draw circle
+				CircleGizmo c = gm.getCircle();
+				if(c !=null){
+					g2d.setColor(c.getColour());
+					int width = (int) (2 * c.getRadius());
+					int x = (int) (c.getExactX() - c.getRadius());
+					int y = (int) (c.getExactY() - c.getRadius());
+					g2d.fillOval(x, y, width, width);
+				} // end of draw circle
+				
+					
 	} // end of paint
 
 	

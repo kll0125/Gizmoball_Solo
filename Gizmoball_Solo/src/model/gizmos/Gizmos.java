@@ -1,62 +1,70 @@
 package model.gizmos;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
 
 import model.GizmoTypes;
 import model.IGizmo;
+import model.physicsMIT.LineSegment;
 
-public class Gizmos {
+/*********************************
+ * this is class is primarily so that I can keep all common factors about the
+ * gizmos in one place.
+ *********************************/
 
-	/*********************************
-	 *  this is class is primarily so that I can keep all common factors about the 
-	 *  gizmos in one place. 
-	 * */
-	
+public class Gizmos implements IGizmo {
 
-	protected static final int PIXELS = Board.PIXELSPERL;
-	protected static final Color SQUARECOLOR = Board.SQUARECOLOR;
-	protected static final Color CIRCLECOLOR = Board.CIRCLECOLOR;
-	protected static final Color ABSORBERCOLOR = Board.ABSORBERCOLOR;
-
-	protected Board gb;
-	protected int x;
-	protected int y;
+	public Gizmos(){ }
+	protected int xpos;
+	protected int ypos;
 	protected int width;
 	protected int height;
-	private int boxSize = 1;
+	public LineSegment ls;
 
-	public Gizmos(int x, int y) {
-		// TODO Auto-generated constructor stub
-		this.x = x;
-		this.y = y;
+	protected Gizmos(int x, int y, int w, int h) {
+		xpos = x;
+		ypos = y;
+		height = h;
+		width = w;
 	}
 
-	public int getX() {
-		return x;
+	@Override
+	public GizmoTypes getType() {
+		// TODO Auto-generated method stub
+		return getType();
 	}
 
-	public int getY() {
-		return y;
+	@Override
+	public int getXpos() {
+		// TODO Auto-generated method stub
+		return xpos;
 	}
 
-	public int getWidthInL() {
+	@Override
+	public int getYpos() {
+		// TODO Auto-generated method stub
+		return ypos;
+	}
+
+	@Override
+	public int getWidth() {
+		// TODO Auto-generated method stub
 		return width;
 	}
 
-	public int getHeightInL() {
+	@Override
+	public int getHeight() {
+		// TODO Auto-generated method stub
 		return height;
 	}
 
-	public  void paint(Graphics2D g){};
-	
-	public Rectangle boundingBox() {
-	    return new Rectangle(x, y, width*PIXELS, height*PIXELS);
-	  }
-	
-	public int GizmoL() {
-		return 30;
+	@Override
+	public Color colour() {
+		// TODO Auto-generated method stub
+		return colour();
 	}
 	
+	public LineSegment getLineSeg() {
+		return ls;
+	}
+
 } // end of class

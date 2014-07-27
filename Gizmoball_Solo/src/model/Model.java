@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import model.gizmos.AbsorberGizmo;
+import model.gizmos.CircleGizmo;
+import model.gizmos.Gizmos;
 import model.gizmos.HorizontalLine;
 import model.gizmos.VerticalLine;
 import model.gizmos.Walls;
@@ -19,6 +22,9 @@ public class Model extends Observable {
 
 	private ArrayList<VerticalLine> lines;
 	private ArrayList<HorizontalLine> Hlines;
+	private CircleGizmo cg;
+	// absorber here 
+	// square here
 	private Ball ball;
 	private Walls gws;
 
@@ -26,7 +32,10 @@ public class Model extends Observable {
 
 		// Ball position (25, 25) in pixels. Ball velocity (100, 100) pixels per
 		// tick
-		ball = new Ball(25, 25, 10, 10);
+		ball = new Ball(19, 19, 10, 10);
+		
+		// adds circle to board
+		cg = new CircleGizmo(90,90);
 
 		// Wall size 500 x 500 pixels
 		gws = new Walls(0, 0, 500, 500);
@@ -37,6 +46,7 @@ public class Model extends Observable {
 		// Hline to add in main
 		Hlines = new ArrayList<HorizontalLine>();
 
+		// adds Gizmos to arrayList
 	}
 
 	public void moveBall() {
@@ -84,8 +94,7 @@ public class Model extends Observable {
 		Circle ballCircle = ball.getCircle();
 		Vect ballVelocity = ball.getVelo();
 		Vect newVelo = new Vect(1, 1);
-		
-		
+
 		// Now find shortest time to hit a vertical line or a wall line
 		double shortestTime = Double.MAX_VALUE;
 		double time = 0.0;
@@ -101,21 +110,17 @@ public class Model extends Observable {
 			}
 		}
 
-		// Time to collide with any vertical lines
-		/*
-		 * for (VerticalLine line : lines) { LineSegment ls = line.getLineSeg();
-		 * time = Geometry .timeUntilWallCollision(ls, ballCircle,
-		 * ballVelocity); if (time < shortestTime) { shortestTime = time;
-		 * newVelo = Geometry.reflectWall(ls, ball.getVelo(), 1.0); } }
-		 */
-
 		return new CollisionDetails(shortestTime, newVelo);
-	}
+	} // end of timeUntilCollision()
 
 	public Ball getBall() {
 		return ball;
 	}
-
+//////////////	
+	public CircleGizmo getCircle(){
+		return cg;
+	}
+/////////////
 
 	public ArrayList<HorizontalLine> gethLines() {
 

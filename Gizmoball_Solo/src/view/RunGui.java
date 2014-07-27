@@ -71,7 +71,6 @@ public class RunGui {
 		button3.setMaximumSize(new Dimension(100, 100));
 		buttons.add(button3);
 		
-		JButton circle = new JButton("Circle");;
 		
 		cp.add(buttons, BorderLayout.LINE_START);
 		cp.add(board, BorderLayout.CENTER);

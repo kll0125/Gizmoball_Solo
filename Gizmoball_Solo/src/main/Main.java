@@ -69,9 +69,8 @@ public class Main {
 				model.addHLine(new HorizontalLine(475, 1, 500));
 				model.addHLine(new HorizontalLine(500, 1, 500));
 				
-				// add gizmos to grid
-			//	SquareGizmo sq1 = new SquareGizmo(60, 30);
-
+				
+							
 				RunGui gui = new RunGui(model);
 				gui.createAndShowGUI();
 		
