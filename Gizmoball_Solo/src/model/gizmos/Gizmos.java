@@ -17,8 +17,8 @@ public class Gizmos implements IGizmo {
 
 	protected int xpos;
 	protected int ypos;
-	protected int width;
-	protected int height;
+	protected static int width;
+	protected static int height;
 	public LineSegment ls;
 	protected GizmoTypes type;
 
@@ -28,6 +28,7 @@ public class Gizmos implements IGizmo {
 		height = H;
 		width = W;
 	}
+
 
 	@Override
 	public int getXpos() {

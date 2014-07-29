@@ -38,7 +38,7 @@ public class Model extends Observable {
 		cg = new CircleGizmo(90, 90);
 		
 		//remove later
-		abg = new AbsorberGizmo(500,100, 100,100);
+		abg = new AbsorberGizmo(500,100);
 
 		// Wall size 500 x 500 pixels
 		gws = new Walls(0, 0, 500, 500);

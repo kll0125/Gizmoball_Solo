@@ -4,21 +4,32 @@ import java.awt.Color;
 
 
 
+import java.awt.Graphics;
+
 import model.physicsMIT.LineSegment;
 
 public class AbsorberGizmo extends Gizmos {
 
 	LineSegment abg;
-	int length = 30;
+	private int width;
+	private int height;
 	private Color colour;
 
 
-	public AbsorberGizmo(int x, int y, int w, int h) {
-		super(x,y,w,h);
+	public AbsorberGizmo(int x, int y) {
+		super(x,y, 0, 0);
+		height = 20;
+		width = 30;
 		colour = Color.RED;
+		createBox();
 		
 	}
 
+
+	public void createBox() {
+		// TODO Auto-generated method stub
+		abg = new LineSegment(1, (int) height, 30 * width, height);
+	}
 
 	public Color getColour() {
 		// TODO Auto-generated method stub
