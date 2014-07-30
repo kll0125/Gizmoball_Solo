@@ -97,16 +97,18 @@ public class BoardView extends JPanel implements Observer {
 			g2d.fillOval(x, y, width, width);
 		} // end of draw circle
 
-		// AbsorberGizmo ab1 = new AbsorberGizmo(getX() * 30, getY() * 30);
-
 		AbsorberGizmo a = gm.getAbsorber();
-		if (a != null) {
+		if(a !=null){
 			g2d.setColor(a.getColour());
-			int widthtimeheight = (int) (2 * a.getHeight() * a.getWidth());
-			int x = (int) (a.getXpos() + getHeight());
-			int y = (int) (a.getYpos() + getWidth());
-			g2d.fillRect(x, y, widthtimeheight, widthtimeheight);
+			int dimensions = (int) ( a.getHeight() * a.getWidth());
+			int x = (int) (a.getExactX() - a.getWidth());
+			int y = (int) (a.getExactY() - a.getHeight());
+			g2d.fillRect(x, y, dimensions, dimensions);
 		} // end of iff
+		
+		
+		
+		
 	} // end of paint
 
 	private double getXScale() {

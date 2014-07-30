@@ -43,7 +43,6 @@ public class CircleGizmo {
 
 	public Circle getCircle() {
 		return new Circle(xpos, ypos, radius);
-
 	}
 	
 	public Color getColour() {

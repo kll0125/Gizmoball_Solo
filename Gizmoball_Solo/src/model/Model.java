@@ -15,7 +15,7 @@ import model.physicsMIT.LineSegment;
 import model.physicsMIT.Vect;
 
 /**
- * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
+ * @author Nadey Ali
  */
 
 public class Model extends Observable {
@@ -34,11 +34,11 @@ public class Model extends Observable {
 		// tick
 		ball = new Ball(19, 19, 10, 10);
 
-		// remove later
+		// new circle gizmo at position
 		cg = new CircleGizmo(90, 90);
 
 		// remove later
-		abg = new AbsorberGizmo(500, 100);
+		abg = new AbsorberGizmo(30, 445);
 
 		// Wall size 500 x 500 pixels
 		gws = new Walls(0, 0, 500, 500);
@@ -100,6 +100,8 @@ public class Model extends Observable {
 
 		// create a new circle
 		Circle CircleGizmo = cg.getCircle();
+		
+		LineSegment AbsorberGizmo = abg.createBox();
 
 		// Now find shortest time to hit a vertical line or a wall line
 		double shortestTime = Double.MAX_VALUE;
@@ -110,25 +112,30 @@ public class Model extends Observable {
 		for (LineSegment line : lss) {
 			time = Geometry.timeUntilWallCollision(line, ballCircle,
 					ballVelocity);
-
-			time = Geometry.timeUntilCircleCollision(CircleGizmo, ballCircle,
-					ballVelocity);
-
+			// unsure of this
+			/*time = Geometry.timeUntilCircleCollision(CircleGizmo, ballCircle,
+					ballVelocity);*/
 			if (time < shortestTime) {
 				shortestTime = time;
 				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
+				// unsure of this
+			/*	newVelo = Geometry.reflectCircle(ballVelocity, ball.getVelo(),
+						newVelo, 0.5);*/
 			}
-			/*
-			 * //unsure of this time =
-			 * Geometry.timeUntilCircleCollision(CircleGizmo, ballCircle,
-			 * ballVelocity);
-			 * 
-			 * newVelo = Geometry.reflectCircle(ballVelocity, ball.getVelo(),
-			 * newVelo, 0.5);
-			 */
-
 		} // end of for
 
+		// time to collide with absorber vertical line
+		/*for(Gizmos abl : giz){
+			time = Geometry.timeUntilWallCollision(AbsorberGizmo, ballCircle,
+					ballVelocity);
+			if (time < shortestTime) {
+				shortestTime = time;
+				newVelo = Geometry.reflectWall(AbsorberGizmo, ball.getVelo(),
+						1.0);
+			}
+			
+		} // end of for
+*/		
 		return new CollisionDetails(shortestTime, newVelo);
 	} // end of timeUntilCollision()
 
@@ -156,7 +163,7 @@ public class Model extends Observable {
 		giz.add(gg);
 	}
 
-	// ///////////////////////////////////////
+	// ////////////////////////////////////////
 
 	public ArrayList<HorizontalLine> gethLines() {
 
