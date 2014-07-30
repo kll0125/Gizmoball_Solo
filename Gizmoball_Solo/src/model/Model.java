@@ -22,7 +22,7 @@ public class Model extends Observable {
 
 	private ArrayList<VerticalLine> lines;
 	private ArrayList<HorizontalLine> Hlines;
-	private ArrayList <Gizmos> giz;
+	private ArrayList<Gizmos> giz;
 	private AbsorberGizmo abg;
 	private CircleGizmo cg;
 	private Ball ball;
@@ -33,12 +33,12 @@ public class Model extends Observable {
 		// Ball position (25, 25) in pixels. Ball velocity (100, 100) pixels per
 		// tick
 		ball = new Ball(19, 19, 10, 10);
-		
+
 		// remove later
 		cg = new CircleGizmo(90, 90);
-		
-		//remove later
-		abg = new AbsorberGizmo(500,100);
+
+		// remove later
+		abg = new AbsorberGizmo(500, 100);
 
 		// Wall size 500 x 500 pixels
 		gws = new Walls(0, 0, 500, 500);
@@ -97,8 +97,8 @@ public class Model extends Observable {
 		Circle ballCircle = ball.getCircle();
 		Vect ballVelocity = ball.getVelo();
 		Vect newVelo = new Vect(1, 1);
-		
-		//remove later
+
+		// create a new circle
 		Circle CircleGizmo = cg.getCircle();
 
 		// Now find shortest time to hit a vertical line or a wall line
@@ -110,12 +110,24 @@ public class Model extends Observable {
 		for (LineSegment line : lss) {
 			time = Geometry.timeUntilWallCollision(line, ballCircle,
 					ballVelocity);
+
+			time = Geometry.timeUntilCircleCollision(CircleGizmo, ballCircle,
+					ballVelocity);
+
 			if (time < shortestTime) {
 				shortestTime = time;
 				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
 			}
-		}
-		
+			/*
+			 * //unsure of this time =
+			 * Geometry.timeUntilCircleCollision(CircleGizmo, ballCircle,
+			 * ballVelocity);
+			 * 
+			 * newVelo = Geometry.reflectCircle(ballVelocity, ball.getVelo(),
+			 * newVelo, 0.5);
+			 */
+
+		} // end of for
 
 		return new CollisionDetails(shortestTime, newVelo);
 	} // end of timeUntilCollision()
@@ -123,27 +135,29 @@ public class Model extends Observable {
 	public Ball getBall() {
 		return ball;
 	}
-	
-	//remove later
-	public CircleGizmo getCircle(){
+
+	// remove later
+	public CircleGizmo getCircle() {
 		return cg;
 	}
-	
-	//remove later
-	public AbsorberGizmo getAbsorber(){
+
+	// remove later
+	public AbsorberGizmo getAbsorber() {
 		return abg;
-		
+
 	}
-//////////////////////////////////////	
-	public ArrayList<Gizmos> getGizmos(){
+
+	// ////////////////////////////////////
+	public ArrayList<Gizmos> getGizmos() {
 		return giz;
 	}
-	
-	public void addGizmos (Gizmos gg){
+
+	public void addGizmos(Gizmos gg) {
 		giz.add(gg);
 	}
-/////////////////////////////////////////
-	
+
+	// ///////////////////////////////////////
+
 	public ArrayList<HorizontalLine> gethLines() {
 
 		return Hlines;

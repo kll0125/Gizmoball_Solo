@@ -3,6 +3,7 @@ package model.gizmos;
 import java.awt.Color;
 
 import model.physicsMIT.Circle;
+import model.physicsMIT.Vect;
 
 public class CircleGizmo {
 
@@ -15,7 +16,7 @@ public class CircleGizmo {
 		xpos = x; // Centre coordinates
 		ypos = y;
 		colour = Color.GREEN;
-		radius = 15;
+		radius = 12;
 	}
 	
 	

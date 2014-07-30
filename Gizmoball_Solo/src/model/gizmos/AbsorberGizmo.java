@@ -28,7 +28,7 @@ public class AbsorberGizmo extends Gizmos {
 
 	public void createBox() {
 		// TODO Auto-generated method stub
-		abg = new LineSegment(1, (int) height, 30 * width, height);
+		abg = new LineSegment(1, (int) height, 2 * width, height);
 	}
 
 	public Color getColour() {
