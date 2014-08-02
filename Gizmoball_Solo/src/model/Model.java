@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import model.gizmos.AbsorberGizmo;
+import model.gizmos.CircleGizmo;
 import model.gizmos.Gizmos;
 import model.gizmos.HorizontalLine;
 import model.gizmos.SquareGizmo;
@@ -22,9 +23,10 @@ public class Model extends Observable {
 
 	private ArrayList<VerticalLine> lines;
 	private ArrayList<HorizontalLine> Hlines; // horizontal lines
-	private AbsorberGizmo abg;
-	private SquareGizmo sq;
 	private ArrayList<Gizmos> giz; // gizmos
+	private AbsorberGizmo abg;
+	private SquareGizmo sqg;
+	private CircleGizmo cg;
 	private Ball ball;
 	private Walls gws;
 
@@ -36,10 +38,14 @@ public class Model extends Observable {
 
 		// Wall size 500 x 500 pixels
 		gws = new Walls(0, 0, 500, 500);
-		
-		abg = new AbsorberGizmo(1, 420, 95,70);
-		
 
+		// abg = new AbsorberGizmo(X, Y, W, H);
+		abg = new AbsorberGizmo(1, 1, 3, 2);
+
+		sqg = new SquareGizmo(300, 300, 25, 25);
+		
+		cg = new CircleGizmo(115, 140);
+		
 		// Lines added in Main
 		lines = new ArrayList<VerticalLine>();
 
@@ -103,29 +109,49 @@ public class Model extends Observable {
 		for (LineSegment line : lss) {
 			time = Geometry.timeUntilWallCollision(line, ballCircle,
 					ballVelocity);
-
+			
 			if (time < shortestTime) {
 				shortestTime = time;
 				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
 			}
 
 		} // end of for
-		// Collision detection for gizmos here
-		//absorber Collisions 
-		//doesn't work correctly
+			// Collision detection for gizmos here
+			
+		// absorber Collisions
+		// doesn't work correctly
 		ArrayList<LineSegment> alss = abg.createAbsorberGizmo(abg);
 		for (LineSegment line : alss) {
 			time = Geometry.timeUntilWallCollision(line, ballCircle,
 					ballVelocity);
-
+			
+			Circle circleGiz = cg.getCircle();
+			
+			time = Geometry.timeUntilCircleCollision(circleGiz, ballCircle,ballVelocity);
+			
+			newVelo = Geometry.reflectCircle(ballVelocity, ball.getVelo(),newVelo, 1.0);
+			
 			if (time < shortestTime) {
 				shortestTime = time;
 				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
 			}
-		} // end of for
+		} // end of for absorber
+
+		// Square collisions
+		ArrayList<LineSegment> slss = sqg.CreateSquareGizmo(sqg);
+		for (LineSegment line : slss) {
+			time = Geometry.timeUntilWallCollision(line, ballCircle,
+					ballVelocity);
+			if (time < shortestTime) {
+				shortestTime = time;
+				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
+			}
+		} // end of for Sq Gizmo
+
 		
+		  
 		
-		
+	
 		
 		return new CollisionDetails(shortestTime, newVelo);
 	} // end of timeUntilCollision()
@@ -134,6 +160,7 @@ public class Model extends Observable {
 		return ball;
 	}
 
+	
 
 	public ArrayList<HorizontalLine> gethLines() {
 
@@ -144,10 +171,18 @@ public class Model extends Observable {
 
 		Hlines.add(hl);
 	}
-	
-	public AbsorberGizmo getAB(){
-		
+
+	public AbsorberGizmo getAB() {
+
 		return abg;
+	}
+
+	public SquareGizmo getSQ() {
+		return sqg;
+	}
+	
+	public CircleGizmo getCG() {
+		return cg;
 	}
 
 	public ArrayList<VerticalLine> getLines() {
@@ -162,6 +197,7 @@ public class Model extends Observable {
 		ball.setVelo(new Vect(x, y));
 	}
 
+	// ///////////
 	public ArrayList<Gizmos> getGiz() {
 		return giz;
 	}
@@ -169,5 +205,5 @@ public class Model extends Observable {
 	public void setGiz(ArrayList<Gizmos> giz) {
 		this.giz = giz;
 	}
-
+	// //////////
 } // end of class
