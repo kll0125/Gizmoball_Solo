@@ -21,9 +21,9 @@ public class SquareGizmo extends Gizmos {
 	
 	public ArrayList <LineSegment> CreateSquareGizmo(SquareGizmo sg) {
 		ArrayList<LineSegment> sls = new ArrayList<LineSegment>();
-		//ArrayList<Circle> slss = new ArrayList<Circle>();
-		int X = sg.xpos;
-		int Y = sg.ypos;
+		ArrayList<Circle> slss = new ArrayList<Circle>();
+		double X = sg.xpos;
+		double Y = sg.ypos;
 		
 		LineSegment l1 = new LineSegment(X, Y, X + 1, Y);
 		LineSegment l2 = new LineSegment(X + 1, Y, X + 1, Y + 1);
@@ -34,14 +34,14 @@ public class SquareGizmo extends Gizmos {
 		sls.add(l3);
 		sls.add(l4);
 		
-	/*	Circle c1 = new Circle (X,Y,0);
+		Circle c1 = new Circle (X,Y,0);
 		Circle c2 = new Circle (X+1,Y,0);
 		Circle c3 = new Circle (X + 1, Y + 1, 0);
 		Circle c4 = new Circle (X, Y + 1, 0);
 		slss.add(c1);
 		slss.add(c2);
 		slss.add(c3);
-		slss.add(c4);*/
+		slss.add(c4);
 	
 		return sls;
 		

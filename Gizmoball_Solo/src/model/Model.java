@@ -40,12 +40,12 @@ public class Model extends Observable {
 		gws = new Walls(0, 0, 500, 500);
 
 		// abg = new AbsorberGizmo(X, Y, W, H);
-		abg = new AbsorberGizmo(1, 1, 3, 2);
+		abg = new AbsorberGizmo(1, 1, 300, 3);
 
-		sqg = new SquareGizmo(300, 300, 25, 25);
-		
+		sqg = new SquareGizmo(100, 100, 25, 25);
+
 		cg = new CircleGizmo(115, 140);
-		
+
 		// Lines added in Main
 		lines = new ArrayList<VerticalLine>();
 
@@ -80,7 +80,6 @@ public class Model extends Observable {
 	}
 
 	private Ball movelBallForTime(Ball ball, double time) {
-
 		double newX = 0.0;
 		double newY = 0.0;
 		double xVel = ball.getVelo().x();
@@ -109,7 +108,7 @@ public class Model extends Observable {
 		for (LineSegment line : lss) {
 			time = Geometry.timeUntilWallCollision(line, ballCircle,
 					ballVelocity);
-			
+
 			if (time < shortestTime) {
 				shortestTime = time;
 				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
@@ -117,20 +116,22 @@ public class Model extends Observable {
 
 		} // end of for
 			// Collision detection for gizmos here
-			
+
 		// absorber Collisions
 		// doesn't work correctly
 		ArrayList<LineSegment> alss = abg.createAbsorberGizmo(abg);
 		for (LineSegment line : alss) {
 			time = Geometry.timeUntilWallCollision(line, ballCircle,
 					ballVelocity);
-			
+
 			Circle circleGiz = cg.getCircle();
-			
-			time = Geometry.timeUntilCircleCollision(circleGiz, ballCircle,ballVelocity);
-			
-			newVelo = Geometry.reflectCircle(ballVelocity, ball.getVelo(),newVelo, 1.0);
-			
+
+			time = Geometry.timeUntilCircleCollision(circleGiz, ballCircle,
+					ballVelocity);
+
+			newVelo = Geometry.reflectCircle(ballVelocity, ball.getVelo(),
+					newVelo, 1.0);
+
 			if (time < shortestTime) {
 				shortestTime = time;
 				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
@@ -139,28 +140,22 @@ public class Model extends Observable {
 
 		// Square collisions
 		ArrayList<LineSegment> slss = sqg.CreateSquareGizmo(sqg);
-		for (LineSegment line : slss) {
-			time = Geometry.timeUntilWallCollision(line, ballCircle,
+		for (LineSegment line1 : slss) {
+			time = Geometry.timeUntilWallCollision(line1, ballCircle,
 					ballVelocity);
+
 			if (time < shortestTime) {
 				shortestTime = time;
-				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
+				newVelo = Geometry.reflectWall(line1, ball.getVelo(), 1.0);
 			}
 		} // end of for Sq Gizmo
 
-		
-		  
-		
-	
-		
 		return new CollisionDetails(shortestTime, newVelo);
 	} // end of timeUntilCollision()
 
 	public Ball getBall() {
 		return ball;
 	}
-
-	
 
 	public ArrayList<HorizontalLine> gethLines() {
 
@@ -180,7 +175,7 @@ public class Model extends Observable {
 	public SquareGizmo getSQ() {
 		return sqg;
 	}
-	
+
 	public CircleGizmo getCG() {
 		return cg;
 	}

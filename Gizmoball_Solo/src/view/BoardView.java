@@ -93,28 +93,30 @@ public class BoardView extends JPanel implements Observer {
 			int width = (int) (2 * c.getRadius());
 			g2d.fillOval(x, y, width, width);
 		} // /
+		
 
 		// draw absorber x,y,width,height
 		AbsorberGizmo abg = new AbsorberGizmo(1, 420, 495, 70);
-		g2d.fillRect(abg.getXpos(), abg.getYpos(), abg.getWidth(),
-				abg.getHeight());
+		g2d.fillRect(abg.getXpos(), abg.getYpos(), abg.getWidth(),abg.getHeight());
+//		Rectangle2D.Double rect = new Rectangle2D.Double(abg.getXpos(),abg.getYpos(), abg.getWidth(), abg.getHeight());
+//		g2d.fill(rect);
+//		g2d.draw(rect);
 
 		// draw Square x,y
 		SquareGizmo sq = new SquareGizmo(300, 300, 25, 25);
 		g2d.setColor(sq.getcolour());
 		g2d.fillRect(sq.getXpos(), sq.getYpos(), sq.getHeight(), sq.getWidth());
+		
 
 		// draw second square
-		SquareGizmo sq1 = new SquareGizmo(200, 200, 25, 25);
+		SquareGizmo sq1 = new SquareGizmo(150, 200, 25, 25);
 		g2d.setColor(sq1.getcolour());
-		g2d.fillRect(sq1.getXpos(), sq1.getYpos(), sq1.getHeight(),
-				sq1.getWidth());
+		g2d.fillRect(sq1.getXpos(), sq1.getYpos(), sq1.getHeight(),sq1.getWidth());
 
 		// draw second square
-		SquareGizmo sq3 = new SquareGizmo(100, 100, 25, 25);
+		SquareGizmo sq3 = new SquareGizmo(200, 100, 25, 25);
 		g2d.setColor(sq3.getcolour());
-		g2d.fillRect(sq3.getXpos(), sq3.getYpos(), sq3.getHeight(),
-				sq3.getWidth());
+		g2d.fillRect(sq3.getXpos(), sq3.getYpos(), sq3.getHeight(),sq3.getWidth());
 
 	} // end of paint
 
