@@ -6,6 +6,7 @@ import java.util.Observable;
 import model.gizmos.AbsorberGizmo;
 import model.gizmos.Gizmos;
 import model.gizmos.HorizontalLine;
+import model.gizmos.SquareGizmo;
 import model.gizmos.VerticalLine;
 import model.gizmos.Walls;
 import model.physicsMIT.Circle;
@@ -21,8 +22,9 @@ public class Model extends Observable {
 
 	private ArrayList<VerticalLine> lines;
 	private ArrayList<HorizontalLine> Hlines; // horizontal lines
+	private AbsorberGizmo abg;
+	private SquareGizmo sq;
 	private ArrayList<Gizmos> giz; // gizmos
-	private ArrayList <AbsorberGizmo>abg; // absorber
 	private Ball ball;
 	private Walls gws;
 
@@ -35,8 +37,8 @@ public class Model extends Observable {
 		// Wall size 500 x 500 pixels
 		gws = new Walls(0, 0, 500, 500);
 		
-		//absorber
-		abg = new ArrayList<AbsorberGizmo>();
+		abg = new AbsorberGizmo(1, 420, 95,70);
+		
 
 		// Lines added in Main
 		lines = new ArrayList<VerticalLine>();
@@ -109,13 +111,22 @@ public class Model extends Observable {
 
 		} // end of for
 		// Collision detection for gizmos here
-		//absorber collision
-		for(AbsorberGizmo line : abg){
-			ArrayList<LineSegment> als = line.getLineSeg();
-			//time = Geometry.timeUntilWallCollision(line,ball,ballVelocity);
-			
-		}// end of for
+		//absorber Collisions 
+		//doesn't work correctly
+		ArrayList<LineSegment> alss = abg.createAbsorberGizmo(abg);
+		for (LineSegment line : alss) {
+			time = Geometry.timeUntilWallCollision(line, ballCircle,
+					ballVelocity);
 
+			if (time < shortestTime) {
+				shortestTime = time;
+				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
+			}
+		} // end of for
+		
+		
+		
+		
 		return new CollisionDetails(shortestTime, newVelo);
 	} // end of timeUntilCollision()
 
@@ -123,11 +134,6 @@ public class Model extends Observable {
 		return ball;
 	}
 
-	///////////////
-	public ArrayList<AbsorberGizmo> getAbsorber() {
-		return abg;
-	}
-	///////////////
 
 	public ArrayList<HorizontalLine> gethLines() {
 
@@ -137,6 +143,11 @@ public class Model extends Observable {
 	public void addHLine(HorizontalLine hl) {
 
 		Hlines.add(hl);
+	}
+	
+	public AbsorberGizmo getAB(){
+		
+		return abg;
 	}
 
 	public ArrayList<VerticalLine> getLines() {

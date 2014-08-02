@@ -35,4 +35,5 @@ public class HorizontalLine {
 	public int getHeight() {
 		return height;
 	}
+	
 } // end of class

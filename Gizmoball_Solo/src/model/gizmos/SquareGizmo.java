@@ -34,14 +34,14 @@ public class SquareGizmo extends Gizmos {
 		sls.add(l3);
 		sls.add(l4);
 		
-		Circle c1 = new Circle (X,Y,0);
+	/*	Circle c1 = new Circle (X,Y,0);
 		Circle c2 = new Circle (X+1,Y,0);
 		Circle c3 = new Circle (X + 1, Y + 1, 0);
 		Circle c4 = new Circle (X, Y + 1, 0);
 		slss.add(c1);
 		slss.add(c2);
 		slss.add(c3);
-		slss.add(c4);
+		slss.add(c4);*/
 	
 		return sls;
 		

@@ -24,6 +24,8 @@ public class Main {
 		Model model = new Model();
 		
 		model.setBallSpeed(200, 200);
+		
+		
 
 				// Vertical line at 
 				model.addLine(new VerticalLine(1, 25, 500));

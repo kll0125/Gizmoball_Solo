@@ -21,12 +21,10 @@ public class AbsorberGizmo extends Gizmos{
 	
 	public ArrayList <LineSegment> createAbsorberGizmo(AbsorberGizmo abg) {
 		ArrayList<LineSegment> abls = new ArrayList<LineSegment>();
-		
 		int X = abg.xpos;
 		int Y = abg.ypos;
 		int W = abg.width;
 		int H = abg.height;
-
 		LineSegment l1 = new LineSegment(X, W, W + X, H);
 		LineSegment l2 = new LineSegment(X + W, Y, W + X, H + Y);
 		LineSegment l3 = new LineSegment(X, Y + H, W + X, H + Y);
