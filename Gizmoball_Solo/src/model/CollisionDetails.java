@@ -3,7 +3,7 @@ package model;
 import model.physicsMIT.Vect;
 
 /**
- * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
+ * @author Nadey Ali 
  */
 
 public  class CollisionDetails {

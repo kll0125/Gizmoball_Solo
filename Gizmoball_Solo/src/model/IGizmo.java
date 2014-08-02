@@ -1,6 +1,10 @@
 package model;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.physicsMIT.LineSegment;
 
 public interface IGizmo {
 	
@@ -15,9 +19,16 @@ public interface IGizmo {
 	int getWidth();
 	int getHeight();
 	
+	// for circle
+	int getRadius();
+	
 	//colour of gizmo's
-	public Color colour();
+	Color getcolour();
+
+	// use line segment for square and absorber
+	public ArrayList<LineSegment> getLineSeg();
 
 	
-	
+
+
 }

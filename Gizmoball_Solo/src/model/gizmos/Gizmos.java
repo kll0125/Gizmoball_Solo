@@ -1,6 +1,7 @@
 package model.gizmos;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.physicsMIT.Vect;
@@ -8,8 +9,12 @@ import model.GizmoTypes;
 import model.IGizmo;
 import model.physicsMIT.LineSegment;
 
+/**
+ * @author Nadey Ali
+ */
+
 /*********************************
- * this is class is primarily so that I can keep all common factors about the
+ * This is class is primarily so that I can keep all common factors about the
  * gizmos in one place.
  *********************************/
 
@@ -17,18 +22,20 @@ public class Gizmos implements IGizmo {
 
 	protected int xpos;
 	protected int ypos;
-	protected static int width;
-	protected static int height;
-	public LineSegment ls;
-	protected GizmoTypes type;
+	protected int width;
+	protected int height;
+	protected int radius;
+	public Color colour;
+	public ArrayList<LineSegment> lineSeg;
+	public GizmoTypes type;
 
-	protected Gizmos(int X, int Y, int W, int H) {
-		xpos = X;
-		ypos = Y;
-		height = H;
-		width = W;
+	public Gizmos(int X, int Y, int W, int H) {
+		this.xpos = X;
+		this.ypos = Y;
+		this.height = H;
+		this.width = W;
+		//lineSeg  = new LineSegment(xpos, ypos, width, height);
 	}
-
 
 	@Override
 	public int getXpos() {
@@ -55,20 +62,26 @@ public class Gizmos implements IGizmo {
 	}
 
 	@Override
-	public Color colour() {
+	public Color getcolour() {
 		// TODO Auto-generated method stub
-		return colour();
+		return colour;
 	}
-	
+
 	@Override
 	public GizmoTypes getType() {
 		// TODO Auto-generated method stub
 		return type;
 	}
-	
-	public LineSegment getLineSeg() {
-		return ls;
+
+	@Override
+	public ArrayList<LineSegment> getLineSeg() {
+		
+		return lineSeg;
 	}
-	
+
+	@Override
+	public int getRadius() {
+		return radius;
+	}
 
 } // end of class

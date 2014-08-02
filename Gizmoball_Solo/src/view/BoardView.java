@@ -4,13 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Double;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -22,9 +19,9 @@ import model.GizmoTypes;
 import model.IGizmo;
 import model.Model;
 import model.gizmos.AbsorberGizmo;
-import model.gizmos.CircleGizmo;
 import model.gizmos.Gizmos;
 import model.gizmos.HorizontalLine;
+import model.gizmos.SquareGizmo;
 import model.gizmos.VerticalLine;
 
 public class BoardView extends JPanel implements Observer {
@@ -76,7 +73,7 @@ public class BoardView extends JPanel implements Observer {
 		for (HorizontalLine hl : gm.gethLines()) {
 			g2d.fillRect(hl.getX(), hl.getY(), 1, hl.getHeight());
 		} // end of horizontal lines
-
+		
 		// draw ball
 		Ball b = gm.getBall();
 		if (b != null) {
@@ -86,30 +83,19 @@ public class BoardView extends JPanel implements Observer {
 			int width = (int) (2 * b.getRadius());
 			g2d.fillOval(x, y, width, width);
 		}// end of draw ball
-
-		// draw circle
-		CircleGizmo c = gm.getCircle();
-		if (c != null) {
-			g2d.setColor(c.getColour());
-			int width = (int) (2 * c.getRadius());
-			int x = (int) (c.getExactX() - c.getRadius());
-			int y = (int) (c.getExactY() - c.getRadius());
-			g2d.fillOval(x, y, width, width);
-		} // end of draw circle
-
-		AbsorberGizmo a = gm.getAbsorber();
-		if(a !=null){
-			g2d.setColor(a.getColour());
-			int dimensions = (int) ( a.getHeight() * a.getWidth());
-			int x = (int) (a.getExactX() - a.getWidth());
-			int y = (int) (a.getExactY() - a.getHeight());
-			g2d.fillRect(x, y, dimensions, dimensions);
-		} // end of iff
 		
-		
+		//draw absorber  x,y,width,height
+		AbsorberGizmo abg = new AbsorberGizmo(1, 420, 495,70);
+		g2d.fillRect(abg.getXpos(), abg.getYpos(), abg.getWidth(), abg.getHeight());
+
+		//draw Square x,y
+		SquareGizmo sq = new SquareGizmo(200,300,25,25);
+		g2d.setColor(sq.getcolour());
+		g2d.fillRect(sq.getXpos(), sq.getYpos(),sq.getHeight(),sq.getWidth());
 		
 		
 	} // end of paint
+
 
 	private double getXScale() {
 		return (double) this.getWidth() / getWidth();

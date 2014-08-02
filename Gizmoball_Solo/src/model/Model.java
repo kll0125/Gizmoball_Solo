@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import model.gizmos.AbsorberGizmo;
-import model.gizmos.CircleGizmo;
 import model.gizmos.Gizmos;
 import model.gizmos.HorizontalLine;
 import model.gizmos.VerticalLine;
@@ -21,10 +20,9 @@ import model.physicsMIT.Vect;
 public class Model extends Observable {
 
 	private ArrayList<VerticalLine> lines;
-	private ArrayList<HorizontalLine> Hlines;
-	private ArrayList<Gizmos> giz;
-	private AbsorberGizmo abg;
-	private CircleGizmo cg;
+	private ArrayList<HorizontalLine> Hlines; // horizontal lines
+	private ArrayList<Gizmos> giz; // gizmos
+	private ArrayList <AbsorberGizmo>abg; // absorber
 	private Ball ball;
 	private Walls gws;
 
@@ -32,16 +30,13 @@ public class Model extends Observable {
 
 		// Ball position (25, 25) in pixels. Ball velocity (100, 100) pixels per
 		// tick
-		ball = new Ball(19, 19, 10, 10);
-
-		// new circle gizmo at position
-		cg = new CircleGizmo(90, 90);
-
-		// remove later
-		abg = new AbsorberGizmo(30, 445);
+		ball = new Ball(25, 25, 100, 100);
 
 		// Wall size 500 x 500 pixels
 		gws = new Walls(0, 0, 500, 500);
+		
+		//absorber
+		abg = new ArrayList<AbsorberGizmo>();
 
 		// Lines added in Main
 		lines = new ArrayList<VerticalLine>();
@@ -49,7 +44,6 @@ public class Model extends Observable {
 		// Hline to add in main
 		Hlines = new ArrayList<HorizontalLine>();
 
-		// adds Gizmos to arrayList
 	}
 
 	public void moveBall() {
@@ -98,11 +92,6 @@ public class Model extends Observable {
 		Vect ballVelocity = ball.getVelo();
 		Vect newVelo = new Vect(1, 1);
 
-		// create a new circle
-		Circle CircleGizmo = cg.getCircle();
-		
-		LineSegment AbsorberGizmo = abg.createBox();
-
 		// Now find shortest time to hit a vertical line or a wall line
 		double shortestTime = Double.MAX_VALUE;
 		double time = 0.0;
@@ -112,30 +101,21 @@ public class Model extends Observable {
 		for (LineSegment line : lss) {
 			time = Geometry.timeUntilWallCollision(line, ballCircle,
 					ballVelocity);
-			// unsure of this
-			/*time = Geometry.timeUntilCircleCollision(CircleGizmo, ballCircle,
-					ballVelocity);*/
+
 			if (time < shortestTime) {
 				shortestTime = time;
 				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
-				// unsure of this
-			/*	newVelo = Geometry.reflectCircle(ballVelocity, ball.getVelo(),
-						newVelo, 0.5);*/
 			}
-		} // end of for
 
-		// time to collide with absorber vertical line
-		/*for(Gizmos abl : giz){
-			time = Geometry.timeUntilWallCollision(AbsorberGizmo, ballCircle,
-					ballVelocity);
-			if (time < shortestTime) {
-				shortestTime = time;
-				newVelo = Geometry.reflectWall(AbsorberGizmo, ball.getVelo(),
-						1.0);
-			}
-			
 		} // end of for
-*/		
+		// Collision detection for gizmos here
+		//absorber collision
+		for(AbsorberGizmo line : abg){
+			ArrayList<LineSegment> als = line.getLineSeg();
+			//time = Geometry.timeUntilWallCollision(line,ball,ballVelocity);
+			
+		}// end of for
+
 		return new CollisionDetails(shortestTime, newVelo);
 	} // end of timeUntilCollision()
 
@@ -143,27 +123,11 @@ public class Model extends Observable {
 		return ball;
 	}
 
-	// remove later
-	public CircleGizmo getCircle() {
-		return cg;
-	}
-
-	// remove later
-	public AbsorberGizmo getAbsorber() {
+	///////////////
+	public ArrayList<AbsorberGizmo> getAbsorber() {
 		return abg;
-
 	}
-
-	// ////////////////////////////////////
-	public ArrayList<Gizmos> getGizmos() {
-		return giz;
-	}
-
-	public void addGizmos(Gizmos gg) {
-		giz.add(gg);
-	}
-
-	// ////////////////////////////////////////
+	///////////////
 
 	public ArrayList<HorizontalLine> gethLines() {
 
@@ -185,6 +149,14 @@ public class Model extends Observable {
 
 	public void setBallSpeed(int x, int y) {
 		ball.setVelo(new Vect(x, y));
+	}
+
+	public ArrayList<Gizmos> getGiz() {
+		return giz;
+	}
+
+	public void setGiz(ArrayList<Gizmos> giz) {
+		this.giz = giz;
 	}
 
 } // end of class

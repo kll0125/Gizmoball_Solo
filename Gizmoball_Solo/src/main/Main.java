@@ -68,9 +68,7 @@ public class Main {
 				model.addHLine(new HorizontalLine(450, 1, 500));
 				model.addHLine(new HorizontalLine(475, 1, 500));
 				model.addHLine(new HorizontalLine(500, 1, 500));
-				
-				
-							
+			
 				RunGui gui = new RunGui(model);
 				gui.createAndShowGUI();
 		

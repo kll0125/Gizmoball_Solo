@@ -1,71 +1,45 @@
 package model.gizmos;
 
 import java.awt.Color;
+import java.awt.Shape;
+import java.util.ArrayList;
 
-
-
-import java.awt.Graphics;
-
-import org.w3c.dom.css.Rect;
-
-import model.physicsMIT.Circle;
+import model.GizmoTypes;
 import model.physicsMIT.LineSegment;
 
-public class AbsorberGizmo {
-
-	LineSegment abg;
-	private int width;
-	private int height;
-	private int xPos, yPos;
-	private Color colour;
-
-
-	public AbsorberGizmo(int x, int y) {
-		height = 20;
-		width = 30;
-		yPos = y;
-		xPos = x;
+public class AbsorberGizmo extends Gizmos{
+	
+	public AbsorberGizmo(int X, int Y, int W, int H) {
+		// TODO Auto-generated constructor stub
+		super(X, Y, W, H);
 		colour = Color.RED;
-		createBox();
 	}
 
-
-	public LineSegment createBox() {
-		// TODO Auto-generated method stub
-		return abg = new LineSegment(1, (int) height, 2 * width, height);
-	}
-
-	public int getHeight() {
-		return height;
+	public GizmoTypes getType() {
+		return GizmoTypes.AbsorberGizmo;
 	}
 	
-	public int getWidth() {
-		return width;
-	}
+	public ArrayList <LineSegment> createAbsorberGizmo(AbsorberGizmo abg) {
+		ArrayList<LineSegment> abls = new ArrayList<LineSegment>();
+		
+		int X = abg.xpos;
+		int Y = abg.ypos;
+		int W = abg.width;
+		int H = abg.height;
 
-	public void setExactX(int x) {
-		xPos = x;
-	}
+		LineSegment l1 = new LineSegment(X, W, W + X, H);
+		LineSegment l2 = new LineSegment(X + W, Y, W + X, H + Y);
+		LineSegment l3 = new LineSegment(X, Y + H, W + X, H + Y);
+		LineSegment l4 = new LineSegment(X, Y, X, Y + H);
+		abls.add(l1);
+		abls.add(l2);
+		abls.add(l3);
+		abls.add(l4);
+		
+		return abls;
+		
+	} // end of CreateAbsorberGizmo()
 
-	public void setExactY(int y) {
-		yPos = y;
-	}
 
-
-	public LineSegment getAbsorber() {
-		return new LineSegment(xPos, yPos, width,height);
-	}
-	
-	public Color getColour() {
-		return colour;
-	}
-
-	public double getExactX() {
-		return xPos;
-	}
-
-	public double getExactY() {
-		return yPos;
-	}
 
 } // end of class
