@@ -27,6 +27,7 @@ public class Model extends Observable {
 	private AbsorberGizmo abg;
 	private SquareGizmo sqg;
 	private CircleGizmo cg;
+	private CircleGizmo cg1;
 	private Ball ball;
 	private Walls gws;
 
@@ -45,7 +46,7 @@ public class Model extends Observable {
 		sqg = new SquareGizmo(100, 100, 25, 25);
 
 		cg = new CircleGizmo(115, 140);
-
+		
 		// Lines added in Main
 		lines = new ArrayList<VerticalLine>();
 

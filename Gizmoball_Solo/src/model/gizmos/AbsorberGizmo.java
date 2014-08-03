@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.util.ArrayList;
 
+import model.Ball;
 import model.GizmoTypes;
 import model.physicsMIT.LineSegment;
 
 public class AbsorberGizmo extends Gizmos{
+	
+	private Ball isCaptured;
 	
 	public AbsorberGizmo(int X, int Y, int W, int H) {
 		// TODO Auto-generated constructor stub
@@ -20,6 +23,8 @@ public class AbsorberGizmo extends Gizmos{
 	}
 	
 	public ArrayList <LineSegment> createAbsorberGizmo(AbsorberGizmo abg) {
+		isCaptured = null; // if ball is captured in absorber
+		
 		ArrayList<LineSegment> abls = new ArrayList<LineSegment>();
 		int X = abg.xpos;
 		int Y = abg.ypos;
@@ -37,6 +42,21 @@ public class AbsorberGizmo extends Gizmos{
 		return abls;
 		
 	} // end of CreateAbsorberGizmo()
+	
+	public void captured(Ball b){
+		
+		Ball ball = b;
+		
+		if(ball !=isCaptured){
+			ball.stop();
+			ball.iscapture();
+		}
+		
+		else{
+			ball.start();
+		}
+		
+	}
 
 
 

@@ -6,7 +6,7 @@ import model.physicsMIT.Circle;
 import model.physicsMIT.Vect;
 
 /**
- * @author Nadey Ali 
+ * @author Nadey Ali
  */
 
 public class Ball {
@@ -16,17 +16,18 @@ public class Ball {
 	private double xpos;
 	private double ypos;
 	private Color colour;
-
 	private boolean stopped;
+	private boolean captured;
 
 	// x, y coordinates and x,y velocity
 	public Ball(double x, double y, double xv, double yv) {
-		xpos = x; // Centre coordinates
-		ypos = y;
-		colour = Color.MAGENTA;
-		velocity = new Vect(xv, yv);
-		radius = 10;
-		stopped = false;
+		this.xpos = x; // Centre coordinates
+		this.ypos = y;
+		this.colour = Color.MAGENTA;
+		this.velocity = new Vect(xv, yv);
+		this.radius = 10;
+		this.stopped = false;
+		this.captured = false;
 	}
 
 	public Vect getVelo() {
@@ -78,7 +79,20 @@ public class Ball {
 	public Color getColour() {
 		return colour;
 	}
+	
+	
+	
+//////////////
+	public void iscapture() {
+		this.velocity = null;
+		this.captured = true;
+	}
+	
+	public boolean getIsCaptured() {
 
+		return captured;
+	}
+//////////////
 	public Object newTask(double tempTime) {
 		// TODO Auto-generated method stub
 		return null;

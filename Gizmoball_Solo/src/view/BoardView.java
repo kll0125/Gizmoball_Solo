@@ -85,6 +85,7 @@ public class BoardView extends JPanel implements Observer {
 			g2d.fillOval(x, y, width, width);
 		}// end of draw ball
 
+		//draw circle
 		CircleGizmo c = gm.getCG();
 		if (c != null) {
 			g2d.setColor(c.getColour());
@@ -92,7 +93,7 @@ public class BoardView extends JPanel implements Observer {
 			int y = (int) (c.getExactY() - c.getRadius());
 			int width = (int) (2 * c.getRadius());
 			g2d.fillOval(x, y, width, width);
-		} // /
+		} ///
 		
 
 		// draw absorber x,y,width,height
@@ -113,7 +114,7 @@ public class BoardView extends JPanel implements Observer {
 		g2d.setColor(sq1.getcolour());
 		g2d.fillRect(sq1.getXpos(), sq1.getYpos(), sq1.getHeight(),sq1.getWidth());
 
-		// draw second square
+		// draw third square
 		SquareGizmo sq3 = new SquareGizmo(200, 100, 25, 25);
 		g2d.setColor(sq3.getcolour());
 		g2d.fillRect(sq3.getXpos(), sq3.getYpos(), sq3.getHeight(),sq3.getWidth());

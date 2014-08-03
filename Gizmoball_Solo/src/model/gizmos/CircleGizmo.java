@@ -11,12 +11,12 @@ public class CircleGizmo {
 	private double ypos;
 	private Color colour;
 
-	// x, y coordinates, radius and colour 
+	// x, y coordinates, radius and colour
 	public CircleGizmo(double x, double y) {
 		xpos = x; // Centre coordinates
 		ypos = y;
 		colour = Color.RED;
-		radius = 12;
+		radius = 10;
 	}
 
 	public double getRadius() {
@@ -28,7 +28,7 @@ public class CircleGizmo {
 
 	}
 
-	//specific methods that deal with double precision.
+	// specific methods that deal with double precision.
 	public double getExactX() {
 		return xpos;
 	}
