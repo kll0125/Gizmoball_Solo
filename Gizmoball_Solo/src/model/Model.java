@@ -193,13 +193,23 @@ public class Model extends Observable {
 		ball.setVelo(new Vect(x, y));
 	}
 
-	// ///////////
-	public ArrayList<Gizmos> getGiz() {
+/*	public ArrayList<Gizmos> getGizArray() {
 		return giz;
 	}
 
 	public void setGiz(ArrayList<Gizmos> giz) {
 		this.giz = giz;
+	}*/
+
+	public ArrayList<Gizmos> getABGiz(AbsorberGizmo AbsorberGizmo) {
+		return giz;	
 	}
-	// //////////
+	
+	public  ArrayList<Gizmos> getSQGiz(SquareGizmo squareGizmo) {
+		return giz;	
+	}
+	
+	public ArrayList<Gizmos> getCGiz(CircleGizmo CircleGizmo) {
+		return giz;	
+	}
 } // end of class

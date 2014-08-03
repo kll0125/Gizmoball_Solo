@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,9 +28,8 @@ public class RunGui {
 	private ActionListener listener;
 	private BoardView board;
 	
-	public RunGui(Model m){
+	public RunGui(Model m) throws IOException{
 		model = m;
-		
 		listener = new RunListener(m);
 	}
 	

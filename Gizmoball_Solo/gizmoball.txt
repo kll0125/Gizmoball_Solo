@@ -1,0 +1,1 @@
+AbsorberGizmo ab1 300 300 300 300

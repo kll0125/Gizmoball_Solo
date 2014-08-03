@@ -5,19 +5,24 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
+import java.io.IOException;
+
 import javax.swing.Timer;
 
 import model.Model;
+import Controller.Parser;
 
 
 public class RunListener extends MouseAdapter implements KeyListener, ActionListener {
 
 	private Timer timer;
 	private Model model;
+	private Parser parser;
 	
-	public RunListener(Model m) {
+	public RunListener(Model m) throws IOException {
 		model = m;
 		timer = new Timer(50, this);
+		parser = new Parser(null);
 	}
 	
 	@Override
@@ -32,6 +37,15 @@ public class RunListener extends MouseAdapter implements KeyListener, ActionList
 				  break;
 			  case "Stop":
 				  timer.stop();
+				  break;
+			  case "Load":
+				  // do the load stuff here
+				  try {
+					parser.readFile("gizmoball.txt");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				  break;
 			  case "Quit":
 				  System.exit(0);
@@ -59,7 +73,7 @@ public class RunListener extends MouseAdapter implements KeyListener, ActionList
 			
 		}
 		
-	} ///
+	} 
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
@@ -67,7 +81,4 @@ public class RunListener extends MouseAdapter implements KeyListener, ActionList
 		
 	}
 
-	
-	
-	
 } //end of class
